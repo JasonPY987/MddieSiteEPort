@@ -6,8 +6,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <title>My E-Portfolio</title>
         <meta name="description" content="An impressive e-portfolio" />
+        <link rel="stylesheet" href="https://use.typekit.net/uwp0sqz.css" />
       </head>
-      <body className="bg-gray-50 text-gray-900">
+      <body className="bg-gray-50 text-gray-900 overflow-hidden">
         <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
           <nav className="container mx-auto p-4 flex justify-between items-center">
             <div className="text-xl font-bold">MyLogo</div>

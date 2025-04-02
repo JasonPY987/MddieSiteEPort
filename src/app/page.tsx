@@ -1,35 +1,64 @@
 export default function HomePage() {
   return (
-    <div>
-      {/* Home Section */}
+    <div className="h-screen snap-y snap-proximity overflow-y-scroll scroll-smooth">
+      {/* Home Section with Custom Hero Layout */}
       <section
-        className="h-screen bg-[url('/images/Home-Page-Background.png')] bg-cover bg-center flex items-center justify-center"
+        className="snap-start relative h-screen bg-[url('/images/Home-Page-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
       >
-        <h1 className="text-white text-5xl font-bold">Welcome to My E‑Portfolio</h1>
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        {/* Container for hero content */}
+        <div className="relative container mx-auto flex flex-col md:flex-row items-center justify-between px-8">
+          {/* Left side: Text content */}
+          <div className="md:w-1/2 text-left">
+            <h2 className="text-xl text-white">Hi I'm</h2>
+            <h1 className="text-5xl font-bold text-white">Madelyn Greer</h1>
+            <p className="mt-4 text-2xl text-white">
+              Cyber Security Specialist
+            </p>
+          </div>
+          {/* Right side: Photo Border */}
+          <div className="md:w-1/2 flex justify-end mt-8 md:mt-0">
+            <img
+              src="/images/Photo-Border-01.png"
+              alt="Photo Border"
+              className="w-auto h-auto"
+            />
+          </div>
+        </div>
       </section>
 
       {/* About Me Section */}
       <section
         id="about"
-        className="h-screen bg-[url('/images/About-Me-Background.png')] bg-cover bg-center flex items-center justify-center"
+        className="snap-start relative h-screen bg-[url('/images/About-Me-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
       >
-        <h2 className="text-white text-4xl font-semibold">About Me</h2>
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <h2 className="relative text-white text-4xl font-semibold animate-fadeIn">
+          About Me
+        </h2>
       </section>
 
       {/* Projects Section */}
       <section
         id="projects"
-        className="h-screen bg-[url('/images/Project-Page-Background.png')] bg-cover bg-center flex items-center justify-center"
+        className="snap-start relative h-screen bg-[url('/images/Project-Page-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
       >
-        <h2 className="text-white text-4xl font-semibold">Projects</h2>
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <h2 className="relative text-white text-4xl font-semibold animate-fadeIn">
+          Projects
+        </h2>
       </section>
 
-      {/* Footer Section */}
+      {/* Contact Section */}
       <section
         id="contact"
-        className="h-screen bg-[url('/images/Footer-Background.png')] bg-cover bg-center flex items-center justify-center"
+        className="snap-start relative h-screen bg-[url('/images/Footer-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
       >
-        <h2 className="text-white text-4xl font-semibold">Contact Me</h2>
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <h2 className="relative text-white text-4xl font-semibold animate-fadeIn">
+          Contact Me
+        </h2>
       </section>
     </div>
   );
