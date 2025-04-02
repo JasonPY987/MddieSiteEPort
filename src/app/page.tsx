@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="relative container mx-auto flex flex-col md:flex-row items-center justify-between px-8">
           {/* Left side: Text content */}
           <div className="md:w-1/2 text-left">
-            <h2 className="text-xl text-white">Hi I'm</h2>
+          <h2 className="text-xl text-white">Hi I&apos;m</h2>
             <h1 className="text-5xl font-bold text-white">Madelyn Greer</h1>
             <p className="mt-4 text-2xl text-white">
               Cyber Security Specialist
