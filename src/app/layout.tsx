@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Import custom font from Adobe Typekit */}
         <link rel="stylesheet" href="https://use.typekit.net/uwp0sqz.css" />
       </head>
-      <body className="bg-gray-50 text-gray-900 overflow-hidden">
+      <body className="bg-gray-50 text-gray-900 overflow-hidden scrollbar-hide">
         {/* Fixed header with navigation */}
         <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
           <nav className="container mx-auto p-4 flex justify-between items-center">
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         {/* Main content container: pages will render here */}
-        <main className="pt-20">{children}</main>
+        <main className="pt-0">{children}</main>
         {/* Footer displayed at the bottom of the page */}
         <footer className="container mx-auto p-4 text-center">
           &copy; {new Date().getFullYear()} My E‑Portfolio. All rights reserved.
@@ -42,4 +42,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-}
+} 

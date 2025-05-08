@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <div className="h-screen snap-y snap-proximity overflow-y-scroll scroll-smooth">
+    <div className="h-screen snap-y snap-proximity overflow-y-scroll scroll-smooth scrollbar-hide">
       {/* Home Section with Custom Hero Layout */}
       <section
         className="snap-start relative h-screen bg-[url('/images/Home-Page-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
@@ -20,7 +20,7 @@ export default function HomePage() {
           {/* Right side: Photo Border */}
           <div className="md:w-1/2 flex justify-end mt-8 md:mt-0">
             <img
-              src="/images/Photo-Border-01.png"
+              src="/images/Maddie_About_Me_Pic1.png"
               alt="Photo Border"
               className="w-auto h-auto"
             />
