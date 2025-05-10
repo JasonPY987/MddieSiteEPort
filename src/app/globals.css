@@ -20,5 +20,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "quicksand", sans-serif;
+  margin: 0; 
+  padding-top: 4rem; 
 }
 
