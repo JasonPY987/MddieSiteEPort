@@ -1,4 +1,7 @@
+'use client';
+
 import ScrollCards from './components/ScrollCards';
+import ProjectLinks from './components/ProjectLinks';
 
 export default function HomePage() {
   return (
@@ -79,12 +82,15 @@ export default function HomePage() {
       {/* Projects Section */}
       <section
         id="projects"
-        className="snap-start relative h-screen bg-[url('/images/Project-Page-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
+        className="snap-start relative bg-[url('/images/Project-Page-Background.png')] bg-cover bg-center bg-fixed py-12"
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        <h2 className="relative text-white text-4xl font-semibold animate-fadeIn">
-          Projects
-        </h2>
+        <div className="relative container mx-auto px-8">
+          <h2 className="text-white text-4xl font-semibold animate-fadeIn mb-8 text-center">
+            Projects
+          </h2>
+          <ProjectLinks />
+        </div>
       </section>
 
       {/* Contact Section */}
