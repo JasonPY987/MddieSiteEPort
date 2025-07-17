@@ -8,6 +8,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="description" content="An impressive e‑portfolio" />
         {/* Import custom font from Adobe Typekit */}
         <link rel="stylesheet" href="https://use.typekit.net/uwp0sqz.css" />
+        {/* reCAPTCHA script - uncomment if using reCAPTCHA */}
+        {/* <script src="https://www.google.com/recaptcha/api.js" async defer></script> */}
       </head>
       <body className="bg-gray-50 text-gray-900 overflow-hidden scrollbar-hide">
         {/* Fixed header with navigation */}

@@ -2,6 +2,7 @@
 
 import ScrollCards from './components/ScrollCards';
 import ProjectLinks from './components/ProjectLinks';
+import ContactForm from './components/ContactForm';
 
 export default function HomePage() {
   return (
@@ -96,12 +97,17 @@ export default function HomePage() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="snap-start relative h-screen bg-[url('/images/Footer-Background.png')] bg-cover bg-center bg-fixed flex items-center justify-center"
+        className="snap-start relative min-h-screen bg-[url('/images/Footer-Background.png')] bg-cover bg-center bg-fixed py-20"
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        <h2 className="relative text-white text-4xl font-semibold animate-fadeIn">
-          Contact Me
-        </h2>
+        <div className="relative container mx-auto px-8 flex flex-col items-center text-white">
+          <h2 className="text-4xl font-semibold animate-fadeIn mb-8 text-center">
+            Contact Me
+          </h2>
+          <div className="w-full max-w-4xl">
+            <ContactForm />
+          </div>
+        </div>
       </section>
     </div>
   );
