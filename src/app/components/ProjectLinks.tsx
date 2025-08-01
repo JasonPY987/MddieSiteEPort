@@ -45,7 +45,6 @@ const projects = [
 
 export default function ProjectLinks() {
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsLoaded(true);
@@ -54,16 +53,16 @@ export default function ProjectLinks() {
 
   if (!isLoaded) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
         {[1, 2, 3].map((_, index) => (
-          <div key={index} className="h-[300px] bg-black/20 rounded-xl animate-pulse" />
+          <div key={index} className="h-[250px] md:h-[300px] bg-black/20 rounded-xl animate-pulse" />
         ))}
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
       <AnimatePresence>
         {projects.map((project, index) => (
           <motion.div
@@ -71,10 +70,10 @@ export default function ProjectLinks() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            className={`group relative h-[300px] rounded-xl overflow-hidden bg-gradient-to-br ${project.gradient}`}
+            className={`group relative h-[250px] md:h-[300px] rounded-xl overflow-hidden bg-gradient-to-br ${project.gradient}`}
           >
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col p-6 text-white">
+            <div className="absolute inset-0 flex flex-col p-4 md:p-6 text-white">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -88,17 +87,17 @@ export default function ProjectLinks() {
                 
                 {/* Text Content */}
                 <div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-white/90 transition-colors line-clamp-1">
+                  <h3 className="text-lg md:text-xl font-bold mb-2 group-hover:text-white/90 transition-colors line-clamp-1">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-white/70 mb-3 transition-opacity duration-300 line-clamp-2">
+                  <p className="text-xs md:text-sm text-white/70 mb-3 transition-opacity duration-300 line-clamp-2">
                     {project.description}
                   </p>
-                  <div className="flex items-center space-x-2 text-sm group-hover:text-white/90">
+                  <div className="flex items-center space-x-2 text-xs md:text-sm group-hover:text-white/90">
                     <span className="font-medium">Learn More</span>
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
-                      className="h-4 w-4" 
+                      className="h-3 w-3 md:h-4 md:w-4" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"

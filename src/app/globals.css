@@ -52,6 +52,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Improve mobile scrolling */
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
@@ -68,6 +70,10 @@
     -webkit-font-smoothing: antialiased;
     font-optical-sizing: auto;
     font-style: normal;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Improve touch interactions */
+    touch-action: manipulation;
   }
 
   /* Form elements reset */
@@ -102,6 +108,25 @@
   [type="range"]:focus {
     outline: none;
   }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    /* Improve text readability on mobile */
+    p, li {
+      line-height: 1.6;
+    }
+    
+    /* Better touch targets */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Improve scrolling performance */
+    .snap-y {
+      scroll-snap-type: y mandatory;
+    }
+  }
 }
 
 /* ===== COMPONENT STYLES ===== */
@@ -119,6 +144,15 @@
   .card-container {
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
+  }
+
+  /* Mobile-friendly card interactions */
+  .mobile-card {
+    @apply transition-all duration-300;
+  }
+  
+  .mobile-card:active {
+    @apply scale-95;
   }
 
   /* Slider Component */
@@ -200,5 +234,25 @@
 
   .bg-switch-thumb {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+  }
+
+  /* Mobile-specific utilities */
+  .mobile-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .mobile-scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Hide scrollbar on mobile */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

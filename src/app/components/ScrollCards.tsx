@@ -28,38 +28,14 @@ const cards: CardContent[] = [
 ];
 
 export default function ScrollCards() {
-  const [activeCard, setActiveCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState<boolean[]>(new Array(cards.length).fill(false));
   const [isLoaded, setIsLoaded] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsLoaded(true);
     }
-
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.5,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const cardIndex = parseInt(entry.target.getAttribute('data-index') || '0');
-          setActiveCard(cardIndex);
-        }
-      });
-    }, options);
-
-    if (isLoaded) {
-      const cards = document.querySelectorAll('.card-container');
-      cards.forEach((card) => observer.observe(card));
-    }
-
-    return () => observer.disconnect();
-  }, [isLoaded]);
+  }, []);
 
   const handleCardClick = (index: number) => {
     setIsFlipped((prev) => {
@@ -71,11 +47,11 @@ export default function ScrollCards() {
 
   if (!isLoaded) {
     return (
-      <div className="py-8">
+      <div className="py-1">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="space-y-8">
+          <div className="space-y-2">
             {[1, 2, 3].map((_, index) => (
-              <div key={index} className="h-[400px] bg-gradient-to-br from-blue-600/50 to-purple-700/50 rounded-2xl animate-pulse" />
+              <div key={index} className="h-[200px] sm:h-[220px] md:h-[240px] bg-gradient-to-br from-blue-600/50 to-purple-700/50 rounded-2xl animate-pulse" />
             ))}
           </div>
         </div>
@@ -84,79 +60,72 @@ export default function ScrollCards() {
   }
 
   return (
-    <div className="py-8">
+    <div className="py-1">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="space-y-8" ref={containerRef}>
-          <AnimatePresence>
-            {cards.map((card, index) => (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+        <div className="space-y-2">
+          {cards.map((card, index) => (
+            <div
+              key={card.id}
+              className="h-[200px] sm:h-[220px] md:h-[240px] relative"
+              onClick={() => handleCardClick(index)}
+              style={{ perspective: '1000px' }}
+            >
+              <div
+                className="w-full h-full relative transition-transform duration-700 transform-style-preserve-3d cursor-pointer"
+                style={{
+                  transform: isFlipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                  transformStyle: 'preserve-3d'
+                }}
               >
+                {/* Front of card */}
                 <div
-                  data-index={index}
-                  className="card-container h-[400px] relative"
-                  onClick={() => handleCardClick(index)}
-                  style={{ perspective: '2000px' }}
+                  className="absolute w-full h-full rounded-2xl p-3 sm:p-4 md:p-6
+                    bg-gradient-to-br from-blue-600 to-purple-700 shadow-xl backface-hidden"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
                 >
-                  <div
-                    className="w-full h-full relative transition-transform duration-700 transform-style-preserve-3d"
-                    style={{
-                      transform: isFlipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                      transformStyle: 'preserve-3d'
-                    }}
-                  >
-                    {/* Front of card */}
-                    <div
-                      className="absolute w-full h-full rounded-2xl p-8 cursor-pointer
-                        bg-gradient-to-br from-blue-600 to-purple-700 shadow-xl backface-hidden"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
-                      }}
-                    >
-                      <div className="h-full flex flex-col justify-center">
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                          Card {index + 1}
-                        </h3>
-                        <p className="text-white text-lg leading-relaxed whitespace-pre-line">
-                          {card.front}
-                        </p>
-                        <div className="absolute bottom-4 right-4 text-white/70">
-                          Click to flip
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Back of card */}
-                    <div
-                      className="absolute w-full h-full rounded-2xl p-8 cursor-pointer
-                        bg-gradient-to-br from-purple-600 to-blue-700 shadow-xl backface-hidden"
-                      style={{
-                        transform: 'rotateY(180deg)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
-                      }}
-                    >
-                      <div className="h-full flex flex-col justify-center">
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                          Details
-                        </h3>
-                        <p className="text-white text-lg leading-relaxed whitespace-pre-line">
-                          {card.back}
-                        </p>
-                        <div className="absolute bottom-4 right-4 text-white/70">
-                          Click to flip
-                        </div>
-                      </div>
+                  <div className="h-full flex flex-col justify-center">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2">
+                      Card {index + 1}
+                    </h3>
+                    <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed whitespace-pre-line">
+                      {card.front}
+                    </p>
+                    <div className="absolute bottom-2 right-2 text-white/70 text-xs">
+                      <span className="md:hidden">Tap to flip</span>
+                      <span className="hidden md:inline">Click to flip</span>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+
+                {/* Back of card */}
+                <div
+                  className="absolute w-full h-full rounded-2xl p-3 sm:p-4 md:p-6
+                    bg-gradient-to-br from-purple-600 to-blue-700 shadow-xl backface-hidden"
+                  style={{
+                    transform: 'rotateY(180deg)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
+                >
+                  <div className="h-full flex flex-col justify-center">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2">
+                      Details
+                    </h3>
+                    <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed whitespace-pre-line">
+                      {card.back}
+                    </p>
+                    <div className="absolute bottom-2 right-2 text-white/70 text-xs">
+                      <span className="md:hidden">Tap to flip</span>
+                      <span className="hidden md:inline">Click to flip</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
